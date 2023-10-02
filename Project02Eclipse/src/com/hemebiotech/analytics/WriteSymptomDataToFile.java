@@ -17,6 +17,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	
 	
 	@Override
+	
 	 public void writeSymptoms(Map<String, Integer> symptoms) {
 		 try (FileWriter writer = new FileWriter ("filepath")) {
 			 for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
