@@ -31,19 +31,10 @@ public class AnalyticsCounter {
 				pupilCount++;
 			}
 
-			line = reader.readLine();	// get another symptom
+			line = reader.readLine();	
 		}
 
 
-		try (FileWriter writer = new FileWriter ("Project02Eclipse/result.out")) {
-			writer.write("headache: " + headacheCount + "\n");
-			writer.write("rash: " + rashCount + "\n");
-			writer.write("dialated pupils: " + pupilCount + "\n");
-			writer.close();
-			System.out.println("Le fichier a été généré avec succès !");
-
-		} catch(IOException e) {
-			e.printStackTrace();
-		}
+		
 	}
 }
