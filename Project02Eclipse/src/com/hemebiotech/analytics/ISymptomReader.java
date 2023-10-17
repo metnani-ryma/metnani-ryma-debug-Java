@@ -3,18 +3,20 @@ package com.hemebiotech.analytics;
 import java.util.List;
 
 /**
- * Tout ce qui lira des données de symptômes à partir d'une source.
- * La partie importante est la valeur de retour de l'opération, qui est une liste de chaînes,
- * qui peut contenir de nombreuses duplications.
+ * Anything that reads symptom data from a source.
+ * The important part is the return value of the operation, which is a list of strings,
+ * that may contain many duplicates.
  *
- * L'implémentation n'a pas besoin d'ordonner la liste.
+ * The implementation does not need to sort the list.
  */
+
 public interface ISymptomReader {
 	/**
-	 * Si aucune donnée n'est disponible, retournez une liste vide.
+	 * If no data is available, return an empty list.
 	 *
-	 * @return une liste brute de tous les symptômes obtenus à partir d'une source de données, 
-	 * les duplications sont possibles/probables.
+	 * @return a raw list of all symptoms obtained from a data source,
+	 * duplications are possible/probable.
 	 */
-	List<String> GetSymptoms ();
+
+	List<String> getSymptoms ();
 }

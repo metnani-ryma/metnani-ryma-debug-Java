@@ -7,49 +7,50 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class qui permet de lire le fichier de symptomes 
+ * Class that reads the symptom file.
  *
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
-	private String filepath;
+    private String filepath;
 
-	/**
-	 * 
-	 * @param filepath un chemin complet ou partiel vers un fichier contenant des chaînes de symptômes, une par ligne
-	 */
-	public ReadSymptomDataFromFile (String filepath) {
-		this.filepath = filepath;
-	}
+    /**
+     * 
+     * @param filepath a full or partial path to a file containing symptom strings, one per line
+     */
+    public ReadSymptomDataFromFile(String filepath) {
+        this.filepath = filepath;
+    }
 
-	/**
-	 *Methode qui lit le fichier contenant les symptomes et 
-	 *retourne une liste de string contenant ces symptomes
-	 *@return une liste contenant tous les symptomes
-	 */
+    /**
+     * Method that reads the file containing symptoms and
+     * returns a list of strings containing these symptoms.
+     * @return a list containing all symptoms
+     */
 
-	public List<String> GetSymptoms() {
-		ArrayList<String> result = new ArrayList<String>();
+    public List<String> getSymptoms() {
+        ArrayList<String> result = new ArrayList<String>();
 
-		if (filepath != null) {
-			try {
-				BufferedReader reader = new BufferedReader (new FileReader(filepath));
-				String line = reader.readLine();
+        if (filepath != null) {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader(filepath));
+                String line = reader.readLine();
 
-				while (line != null) {
-					result.add(line);
-					line = reader.readLine();
-				}
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
+                while (line != null) {
+                    result.add(line);
+                    line = reader.readLine();
+                }
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-		return result;
-	}
-
-
-
-
+        return result;
+    }
 }
+
+
+
+
+

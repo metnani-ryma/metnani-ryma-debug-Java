@@ -5,16 +5,18 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Class qui permet d'ecrire dans un fichier les symptomes et leur occurences
+ * Class that allows writing symptoms and their occurrences to a file.
  */
+
 public class WriteSymptomDataToFile implements ISymptomWriter {
 
 	private String filepath;
 	/**
 	 * 
-	 * @param filepath un chemin complet ou partiel vers un fichier contenant 
-	 * des chaînes de symptômes, une par ligne
+	 * @param filepath a full or partial path to a file containing
+	 * symptom strings, one per line
 	 */
+
 	public WriteSymptomDataToFile (String filepath) {
 		this.filepath = filepath;
 	}
@@ -22,10 +24,10 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 
 
 	/**
-	 * 
-	 * Methode qui permet d'ecrire les symptomes et leur occurences dans un fichier en sortie
-	 * @param la Map des symptomes et leur occurence
+	 * Method that allows writing symptoms and their occurrences to an output file.
+	 * @param the Map of symptoms and their occurrence
 	 */
+
 	public void writeSymptoms(Map<String, Integer> symptoms) {
 		try (FileWriter writer = new FileWriter (filepath)) {
 			for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {

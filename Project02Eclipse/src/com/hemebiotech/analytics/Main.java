@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Class main qui permet de lire un fichier contenant les symptomes et qui 
- * retourne un fichier contenant les symptomes rangé par ordre alphabetique avc pour chaque ligne
- * le symptome et son nombre d'occurences
+ * Main class that allows launching the program.
  */
+
 public class Main {
 
 
@@ -15,24 +14,25 @@ public class Main {
 
 
 	public static void main(String args[]) throws Exception {
-		//le path du fichier de donnes de symptomes en entree
-		String  path = "Project02Eclipse/symptoms.txt";
-		//le path du fichier de symptomes en sortie avec les occurences
-		String  sortie = "Project02Eclipse/result.out";	
-		//instanciation d'un objet reader
-		ISymptomReader reader = new ReadSymptomDataFromFile(path); 
-		//instanciation d'un objet writer
-		ISymptomWriter writer = new WriteSymptomDataToFile(sortie); 
-		// Instanciation d'un objet AnalyticsCounter
-		AnalyticsCounter counter = new AnalyticsCounter(reader, writer);
-		//creation de la liste des symptomes
-		List<String> liste=reader.GetSymptoms();
-		//creation de la map des symptomes
-		Map<String, Integer> mape= counter.countSymptoms(liste);
-		//ordonnancement de la map
-		mape=counter.sortSymptoms(mape);
-		//creation du fichier de sortie
-		writer.writeSymptoms(mape);
+		// The path of the input file for symptom data
+		String  inPath = "Project02Eclipse/symptoms.txt";
+		// The path of the output file for symptoms with their occurrences
+		String  outPath = "Project02Eclipse/result.out";	
+		// Instantiation of a reader object
+		ISymptomReader reader = new ReadSymptomDataFromFile(inPath); 
+		// Instantiation of a  writer object
+		ISymptomWriter writer = new WriteSymptomDataToFile(outPath); 
+		// Instantiation of a AnalyticsCounter object
+		AnalyticsCounter analyticsCounter = new AnalyticsCounter(reader, writer);
+		// Creating the list of symptoms
+		analyticsCounter.getSymptoms();
+		// Creating the map of symptoms
+		Map<String, Integer> symptomsMap = analyticsCounter.countSymptoms();
+		// Sorting the map
+		symptomsMap = analyticsCounter.sortSymptoms();
+		// Creating the output file
+		analyticsCounter.writeSymptoms(symptomsMap);
+
 
 
 

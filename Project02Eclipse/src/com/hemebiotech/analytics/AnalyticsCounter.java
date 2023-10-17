@@ -14,16 +14,19 @@ import java.util.TreeMap;
 
 
 /**
- * Classe qui lit et analyse les symptomes et les compte
+ * Class that reads and analyzes symptoms and counts them.
  */
 public class AnalyticsCounter {
 
 	private ISymptomReader reader;
 	private ISymptomWriter writer;
+	private List<String> symptomsList;
+	private Map<String, Integer> symptomsMap;
+	
 
 
 	/**
-	 *  Constructeur avec deux paramètres
+	 * Constructor with two parameters.
 	 * @param reader
 	 * @param writer
 	 */
@@ -34,16 +37,17 @@ public class AnalyticsCounter {
 
 
 	/**
-	 * Methode qui lit un tableau contenant tous les symptomes pour ensuite les placer 
-	 * dans une Map avec pour chaque symptome son nombre d'occurence
-	 *  @param liste de tous les symptomes
-	 *  @return Map de chasue symptome avec son nombre d'occurence
+	 * Method that reads an array containing all symptoms and then places them
+	 * in a Map with each symptom and its occurrence count.
+	 * @param list of all symptoms
+	 * @return Map of each symptom with its occurrence count
 	 */
-	public Map<String, Integer> countSymptoms(List<String> symptoms) {
+
+	public Map<String, Integer> countSymptoms() {
 		// Initialiser la Map pour stocker les symptômes et leurs occurrences
 		Map<String, Integer> symptomCount = new HashMap<>();
 		// Parcourir la liste de symptômes
-		for (String symptom : symptoms) {
+		for (String symptom : symptomsList) {
 			if (symptomCount.containsKey(symptom)) {
 				int currentCount = symptomCount.get(symptom);
 				symptomCount.put(symptom, currentCount + 1);
@@ -52,26 +56,46 @@ public class AnalyticsCounter {
 				symptomCount.put(symptom, 1);
 			}
 		}
-		return symptomCount;
+		symptomsMap=symptomCount;
+		return symptomsMap;
 
 	}
 
 	/**
-	 * Méthode qui range la Map où sont stockés les symptomes et 
-	 * leur nombre d'occurence par ordre alphabetique
-	 * @param la map des symptomes et de leur occurence
-	 * @return la meme map rangée par odre alphabetique
-	 * 
+	 * Method that sorts the Map where symptoms and their occurrence counts are stored
+	 * in alphabetical order.
+	 * @param the map of symptoms and their occurrence counts
+	 * @return the same map sorted in alphabetical order
 	 */
-	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) { 
 
-		Map<String, Integer> sortedMap = new TreeMap<>(symptoms);
+	public Map<String, Integer> sortSymptoms() { 
+
+		Map<String, Integer> sortedMap = new TreeMap<>(symptomsMap);
 
 		return sortedMap;
 
 	}
 
-
+	/**
+	 *  Method  that retrieves the list of entries
+	 * from the file using the instance of ISymptomReader already
+	 * created.
+	 * @return a list containing all symptoms
+	 */
+	
+	public List<String> getSymptoms() {
+		symptomsList=reader.getSymptoms();
+		return symptomsList;
+	}
+	
+	/**
+	 *  Method  that writes the result to the
+	 * output file using the instance of ISymptomWriter already
+	 * created.
+	 */
+	public void writeSymptoms(Map<String, Integer> symptoms) {
+		writer.writeSymptoms(symptoms);
+	}
 
 
 }
